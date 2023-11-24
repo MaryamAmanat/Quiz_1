@@ -4,6 +4,15 @@ import streamlit as st
 from nltk import ngrams
 from nltk.tokenize import word_tokenize
 
+# Install NLTK if not already installed
+try:
+    from nltk import ngrams
+except ImportError:
+    st.warning("NLTK library not found. Installing...")
+    import subprocess
+    subprocess.run(["pip", "install", "nltk"])
+    from nltk import ngrams
+
 # Function to generate n-grams
 def generate_ngrams(text, n):
     tokens = word_tokenize(text)
